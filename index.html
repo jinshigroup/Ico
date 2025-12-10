@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线生成透明ICO图标 - 免费制作透明favicon.ico</title>
+    <meta name="description" content="免费在线生成透明ICO图标工具，支持PNG转ICO格式，一键制作透明favicon.ico图标，适用于网站favicon制作">
+    <meta name="keywords" content="透明ICO图标,ICO生成器,PNG转ICO,在线制作favicon,透明favicon生成">
+    <!-- Open Graph -->
+    <meta property="og:title" content="在线生成透明ICO图标 - 免费制作透明favicon.ico">
+    <meta property="og:description" content="免费在线生成透明ICO图标工具，支持PNG转ICO格式，一键制作透明favicon.ico图标">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ico.jinshi.group">
+    <!-- Canonical -->
+    <link rel="canonical" href="https://ico.jinshi.group">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f9f9ff;
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .preview-section {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .preview-title {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .preview-image {
+            max-width: 200px;
+            max-height: 200px;
+            margin: 0 auto 20px;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+        .size-selector {
+            margin: 20px 0;
+        }
+
+        .size-option {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .size-option:hover {
+            background: #e0e0e0;
+        }
+
+        .size-option.selected {
+            background: #667eea;
+            color: white;
+        }
+
+        .download-options {
+            margin-top: 20px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+            text-align: center;
+            margin: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>在线生成透明ICO图标</h1>
+            <p class="subtitle">免费将PNG图片转换为透明ICO图标，支持多种尺寸</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <h2>点击选择图片或拖拽图片到这里</h2>
+                <p>支持PNG、JPG、JPEG格式，建议尺寸256x256像素以上</p>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <button class="btn" style="margin-top: 20px;">选择图片</button>
+            </div>
+
+            <div class="preview-section" id="previewSection">
+                <h3 class="preview-title">预览效果</h3>
+                <img id="previewImage" class="preview-image" alt="ICO预览">
+                
+                <div class="size-selector">
+                    <h4>选择下载尺寸:</h4>
+                    <div class="size-option selected" data-size="16">16×16</div>
+                    <div class="size-option" data-size="32">32×32</div>
+                    <div class="size-option" data-size="48">48×48</div>
+                    <div class="size-option" data-size="64">64×64</div>
+                    <div class="size-option" data-size="128">128×128</div>
+                    <div class="size-option" data-size="256">256×256</div>
+                    <div class="size-option" data-size="512">512×512</div>
+                </div>
+                
+                <div class="download-options">
+                    <button class="btn" id="downloadBtn">下载选定尺寸ICO</button>
+                </div>
+            </div>
+        </main>
+
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>快速转换</h3>
+                <p>秒级转换速度，无需等待</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🖼️</div>
+                <h3>完全透明</h3>
+                <p>完美保留图片透明背景</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>安全私密</h3>
+                <p>文件不上传服务器，本地处理</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ico.jinshi.group - 在线生成透明ICO图标工具</p>
+        <p>所有操作均在浏览器本地完成，保障您的隐私安全</p>
+    </footer>
+
+    <script>
+        // 获取DOM元素
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const previewSection = document.getElementById('previewSection');
+        const previewImage = document.getElementById('previewImage');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const sizeOptions = document.querySelectorAll('.size-option');
+
+        let currentImageSrc = null;
+        let selectedSize = 16;
+        let generatedIcons = {};
+
+        // 点击上传区域触发文件选择
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // 文件选择事件
+        fileInput.addEventListener('change', handleFileSelect);
+
+        // 拖拽上传功能
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#667eea';
+            uploadArea.style.backgroundColor = '#f0f0ff';
+        });
+
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = '';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = '';
+
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+
+        // 尺寸选择事件
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedSize = parseInt(option.dataset.size);
+            });
+        });
+
+        // 处理文件选择
+        function handleFileSelect() {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            if (!file.type.match('image.*')) {
+                alert('请选择图片文件！');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentImageSrc = e.target.result;
+                // 生成预览图(256x256)
+                generatePreview(currentImageSrc);
+                // 生成所有尺寸的ICO
+                generateAllIcons(currentImageSrc);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 生成预览图
+        function generatePreview(imageSrc) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            const img = new Image();
+            img.onload = function() {
+                canvas.width = 256;
+                canvas.height = 256;
+                ctx.drawImage(img, 0, 0, 256, 256);
+                previewImage.src = canvas.toDataURL('image/png');
+                previewSection.style.display = 'block';
+            };
+            img.src = imageSrc;
+        }
+
+        // 生成所有尺寸的ICO图标
+        function generateAllIcons(imageSrc) {
+            const sizes = [16, 32, 48, 64, 128, 256, 512];
+            generatedIcons = {};
+            
+            const img = new Image();
+            img.onload = function() {
+                sizes.forEach(size => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = size;
+                    canvas.height = size;
+                    ctx.drawImage(img, 0, 0, size, size);
+                    
+                    try {
+                        generatedIcons[size] = canvas.toDataURL('image/x-icon');
+                    } catch (e) {
+                        console.error(`生成 ${size}x${size} ICO失败:`, e);
+                    }
+                });
+            };
+            img.src = imageSrc;
+        }
+
+        // 下载选定尺寸的ICO文件
+        downloadBtn.addEventListener('click', () => {
+            if (!generatedIcons[selectedSize]) {
+                alert('图标生成中，请稍后再试...');
+                return;
+            }
+            
+            const link = document.createElement('a');
+            link.href = generatedIcons[selectedSize];
+            link.download = `favicon-${selectedSize}x${selectedSize}.ico`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
